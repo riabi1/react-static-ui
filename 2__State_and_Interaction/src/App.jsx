@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 const App = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const toggle = () => { setIsVisible(prev => !prev) }
+  const [theme, setTheme] = useState('light')
+  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light')
 
   return (
-    <div>
-      {isVisible && <div>Now you see me</div>}
-      <button onClick={toggle}>{isVisible ? 'Hide' : 'Show'}</button>
-    </div>
+    <div className={theme}>
+      <p>The current theme is {theme}.</p>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div >
   )
 }
 
