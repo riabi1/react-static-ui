@@ -1,14 +1,21 @@
 import { useState } from 'react'
 
 const App = () => {
-  const [theme, setTheme] = useState('light')
-  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const toggleModal = () => setIsModalOpen(prev => !prev)
 
   return (
-    <div className={theme}>
-      <p>The current theme is {theme}.</p>
-      <button onClick={toggleTheme}>Toggle Theme</button>
-    </div >
+    <div>
+      <button onClick={toggleModal}>Open Modal</button>
+      {isModalOpen && (
+        <div className="overlay">
+          <div className="modal">
+            <p>This is a modal</p>
+            <button onClick={toggleModal}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
