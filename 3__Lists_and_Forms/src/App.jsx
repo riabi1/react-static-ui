@@ -1,3 +1,4 @@
+import TodoItem from "./components/TodoItem";
 const App = () => {
   const todos = [
     { id: 1, text: "Learn React lists", completed: false },
@@ -6,10 +7,10 @@ const App = () => {
   ];
   return (
     <div>
-      <h1>Todo List</h1>
+      <h1 className="text-lg font-bold text-center">Todo List</h1>
       <ul>
-        {todos.map((todo)=>(
-          <li key={todo.id}>{todo.text}</li>
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
     </div>
