@@ -29,8 +29,14 @@ const App = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   }
 
+  const toggleTodo = (id) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  }
+
   return (
-    <div>
+    <div className="max-w-md mx-auto mt-10 p-4 border rounded">
       <h1 className="text-lg font-bold text-center">Todo List</h1>
       <form onSubmit={handleSubmit} className="mb-4">
         <input
@@ -49,7 +55,7 @@ const App = () => {
       </form>
       <ul>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} onDelete={deleteTodo}/>
+          <TodoItem key={todo.id} todo={todo} onDelete={deleteTodo} onToggle={toggleTodo}/>
         ))}
       </ul>
     </div>
