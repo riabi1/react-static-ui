@@ -21,83 +21,88 @@ const App = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Build Amazing Products Faster
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-600 mb-8">
-            The modern platform that helps teams ship better products with less effort.
-            Streamline your workflow and focus on what matters.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-700">
-              Get Started Free
-            </button>
-            <button className="bg-white text-gray-700 px-8 py-3 rounded-lg text-lg border border-gray-300 hover:bg-gray-50">
-              Watch Demo
-            </button>
+      <section className="py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
+              Build Amazing Products Faster
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed">
+              The modern platform that helps teams ship better products with less effort.
+              Streamline your workflow and focus on what matters.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700">
+                Get Started Free
+              </button>
+              <button className="bg-white text-gray-700 border border-gray-300 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-50">
+                Watch Demo
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12">
-          Everything you need
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Fast Performance",
-              description: "Lightning-fast load times and smooth interactions keep your users engaged."
-            },
-            {
-              title: "Secure by Default",
-              description: "Enterprise-grade security built in from the ground up to protect your data."
-            },
-            {
-              title: "Easy Integration",
-              description: "Connect with your existing tools in minutes with our simple API."
-            },
-            {
-              title: "Real-time Sync",
-              description: "Changes sync instantly across all devices and team members."
-            },
-            {
-              title: "Advanced Analytics",
-              description: "Deep insights into user behavior and product performance."
-            },
-            {
-              title: "24/7 Support",
-              description: "Our team is always here to help you succeed with priority support."
-            }
-          ].map((feature, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl border border-gray-200">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4"></div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-4 tracking-tight">
+            Everything you need
+          </h2>
+          <p className="text-lg text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            Powerful features designed to help you work smarter and ship faster
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Fast Performance",
+                description: "Lightning-fast load times and smooth interactions keep your users engaged."
+              },
+              {
+                title: "Secure by Default",
+                description: "Enterprise-grade security built in from the ground up to protect your data."
+              },
+              {
+                title: "Easy Integration",
+                description: "Connect with your existing tools in minutes with our simple API."
+              },
+              {
+                title: "Real-time Sync",
+                description: "Changes sync instantly across all devices and team members."
+              },
+              {
+                title: "Advanced Analytics",
+                description: "Deep insights into user behavior and product performance."
+              },
+              {
+                title: "24/7 Support",
+                description: "Our team is always here to help you succeed with priority support."
+              }
+            ].map((feature, index) => (
+              <div key={index} className="bg-white p-8 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg mb-5"></div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 py-12 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to get started?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Join thousands of teams already building better products.
-          </p>
-          <button className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-50">
-            Start Free Trial
-          </button>
+      <section className="bg-blue-600 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 tracking-tight leading-tight">
+              Ready to get started?
+            </h2>
+            <p className="text-xl text-blue-100 mb-10 leading-relaxed">
+              Join thousands of teams already building better products.
+            </p>
+            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors">
+              Start Free Trial
+            </button>
+          </div>
         </div>
       </section>
 
@@ -146,5 +151,6 @@ const App = () => {
     </div>
   );
 }
+
 
 export default App
