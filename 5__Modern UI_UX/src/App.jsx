@@ -2,14 +2,44 @@ import { useState, useEffect } from 'react';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [features, setFeatures] = useState([]);
+  const [showEmpty, setShowEmpty] = useState(false);
 
   // Simulate data loading
   useEffect(() => {
     const timer = setTimeout(() => {
+      if (!showEmpty) {
+        setFeatures([
+          {
+            title: "Fast Performance",
+            description: "Lightning-fast load times and smooth interactions keep your users engaged."
+          },
+          {
+            title: "Secure by Default",
+            description: "Enterprise-grade security built in from the ground up to protect your data."
+          },
+          {
+            title: "Easy Integration",
+            description: "Connect with your existing tools in minutes with our simple API."
+          },
+          {
+            title: "Real-time Sync",
+            description: "Changes sync instantly across all devices and team members."
+          },
+          {
+            title: "Advanced Analytics",
+            description: "Deep insights into user behavior and product performance."
+          },
+          {
+            title: "24/7 Support",
+            description: "Our team is always here to help you succeed with priority support."
+          }
+        ]);
+      }
       setIsLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [showEmpty]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -86,53 +116,46 @@ const App = () => {
             </>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLoading ? (
-              // Loading skeletons for feature cards
-              Array.from({ length: 6 }).map((_, index) => (
+          {isLoading ? (
+            // Loading skeletons
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className="bg-white p-8 rounded-xl border border-gray-200">
                   <div className="w-12 h-12 bg-gray-200 rounded-lg mb-5 animate-pulse"></div>
                   <div className="h-6 bg-gray-200 rounded-lg mb-3 w-3/4 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded-lg mb-2 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded-lg w-5/6 animate-pulse"></div>
                 </div>
-              ))
-            ) : (
-              // Actual feature cards
-              [
-                {
-                  title: "Fast Performance",
-                  description: "Lightning-fast load times and smooth interactions keep your users engaged."
-                },
-                {
-                  title: "Secure by Default",
-                  description: "Enterprise-grade security built in from the ground up to protect your data."
-                },
-                {
-                  title: "Easy Integration",
-                  description: "Connect with your existing tools in minutes with our simple API."
-                },
-                {
-                  title: "Real-time Sync",
-                  description: "Changes sync instantly across all devices and team members."
-                },
-                {
-                  title: "Advanced Analytics",
-                  description: "Deep insights into user behavior and product performance."
-                },
-                {
-                  title: "24/7 Support",
-                  description: "Our team is always here to help you succeed with priority support."
-                }
-              ].map((feature, index) => (
+              ))}
+            </div>
+          ) : features.length > 0 ? (
+            // Feature cards
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
                 <div key={index} className="bg-white p-8 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg mb-5"></div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">{feature.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            // Empty state
+            <div className="bg-white rounded-xl border-2 border-dashed border-gray-300 p-12 text-center max-w-2xl mx-auto">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">No features available</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                We're currently updating our features. Check back soon or contact us to learn more about what we offer.
+              </p>
+              <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                Contact Support
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -196,15 +219,26 @@ const App = () => {
         </div>
       </footer>
 
-      {/* Debug: Toggle loading button */}
-      <button
-        onClick={() => setIsLoading(!isLoading)}
-        className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800"
-      >
-        Toggle Loading
-      </button>
+      {/* Debug Controls */}
+      <div className="fixed bottom-4 right-4 flex flex-col gap-2">
+        <button
+          onClick={() => setIsLoading(!isLoading)}
+          className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800"
+        >
+          Toggle Loading
+        </button>
+        <button
+          onClick={() => {
+            setShowEmpty(!showEmpty);
+            setFeatures([]);
+            setIsLoading(true);
+          }}
+          className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800"
+        >
+          Toggle Empty
+        </button>
+      </div>
     </div>
   );
 }
-
 export default App;
